@@ -1,5 +1,6 @@
 package app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ContaControleController {
 
 		List<ContaControle> contas = service.findAll();
         if (contas.isEmpty()) {
-            result.setMsg("no user found!");
+            result.setMsg("Conta controle não encontrada!");
         } else {
             result.setMsg("success");
         }
@@ -40,6 +41,8 @@ public class ContaControleController {
 	@GetMapping("/contacontrole/insert/{nome}")
 	public ResponseEntity<?> insert(@PathVariable String nome) {
 		
+		GEResponseBody result = new GEResponseBody();
+		
 		Endereco endereco = new Endereco("Rua A", "Centro", "São Paulo", "SP", "06765-015");
 		String telefones = "99186-4763";
 		String email = "ecaversan@gmail.com";
@@ -49,8 +52,31 @@ public class ContaControleController {
 		String tipo = TipoPessoa.PF.toString();
 		
 		service.insert(nome, endereco, telefones, email, cpf, rg, webSite, tipo);
+		result.setMsg("Conta cadastrada com sucesso!");
+		return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping("/contacontrole/delete/{nome}")
+	public ResponseEntity<?> delete(@PathVariable String nome) {
 		
-		return ResponseEntity.ok("Conta cadastrada com sucesso!");
+		GEResponseBody result = new GEResponseBody();
+		result.setMsg("Conta não encontrada!");
+		
+		List<ContaControle> contas = service.findAll();
+        if (!contas.isEmpty()) {
+        	for (ContaControle contaControle : contas) {
+				if(contaControle.getNome().equals(nome)) {
+					service.delete(contaControle);
+					List<ContaControle> contaDeletada = new ArrayList<>();
+					contaDeletada.add(contaControle);
+					result.setResult(contaDeletada);
+					result.setMsg("success");
+					break;
+				}
+			}
+        }
+		
+        return ResponseEntity.ok(result);
 	}
 
 }
