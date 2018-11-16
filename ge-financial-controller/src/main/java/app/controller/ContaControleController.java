@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.model.ContaControle;
-import app.model.Endereco;
 import app.model.GEResponseBody;
-import app.model.TipoPessoa;
 import app.service.ContaControleService;
 
 @RestController
