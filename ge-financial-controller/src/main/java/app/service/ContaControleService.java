@@ -30,6 +30,10 @@ public class ContaControleService {
 		repository.insert(new ContaControle(ObjectId.get(), nome, endereco, telefones, email, cpf, rg, webSite, tipo));
 	}
 	
+	public void insert(ContaControle conta) {
+		repository.insert(conta);
+	}
+	
 	public void delete(ContaControle conta) {
 		repository.delete(conta);
 	}
