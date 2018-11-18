@@ -1,6 +1,7 @@
 package app.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -14,12 +15,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(collection = "contasBancarias")
-public class ContaBancaria {
+@Document(collection = "despesas")
+public class Despesa {
 	@Id
 	private ObjectId _id;
-	private String conta;
-	private BigDecimal saldoInicial;
-	private BigDecimal saldoAtual;
-	private ContaControle contaControle;
+	private ContaBancaria contaBancaria;
+	private String documento;
+	private LocalDate dataMovimento;
+	private String referencia;
+	private String fornecedor;
+	private BigDecimal valor;
+	private LocalDate dataPagamento;
+	private String observacoes;
+	private SituacaoDespesa situacao;
 }
