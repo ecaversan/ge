@@ -37,4 +37,8 @@ public class ContaControleService {
 	public void delete(ContaControle conta) {
 		repository.delete(conta);
 	}
+	
+	public void save(ContaControle conta) {
+		repository.save(conta);
+	}
 }
