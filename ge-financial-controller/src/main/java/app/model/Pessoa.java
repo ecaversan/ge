@@ -1,12 +1,10 @@
 package app.model;
 
+import java.time.Instant;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @SuppressWarnings("unused")
 @Document(collection = "pessoas")
@@ -22,6 +20,7 @@ public class Pessoa {
 	private String rg;
 	private String webSite;
 	private String tipo;
+	private Instant dataCadastro;
 	
 	/**
 	 * @param id
@@ -46,6 +45,7 @@ public class Pessoa {
 		this.rg = rg;
 		this.webSite = webSite;
 		this.tipo = tipo;
+		this.dataCadastro = Instant.now();
 	}
 
 	public ObjectId get_id() {
@@ -118,6 +118,14 @@ public class Pessoa {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Instant getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Instant dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 	
 }
