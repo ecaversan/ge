@@ -5,11 +5,13 @@ import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import app.model.Cliente;
 import app.model.Endereco;
 import app.repository.ClienteRepository;
 
+@Service
 public class ClienteService {
 	
 	@Autowired
