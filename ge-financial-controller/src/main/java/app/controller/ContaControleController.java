@@ -34,8 +34,9 @@ public class ContaControleController {
 		}
 		System.out.println(contas.stream().toString());
 		result.setResult(contas);
-
-		return ResponseEntity.ok(result);
+		
+		return ResponseEntity.ok()
+				.body(result);
 	}
 
 	@GetMapping("/contacontrole/delete/{nome}")
